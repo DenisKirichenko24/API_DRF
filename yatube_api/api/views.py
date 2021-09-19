@@ -1,16 +1,16 @@
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 
-from posts.models import Follow, Group, Post, User
-
 from rest_framework import filters, viewsets
 from rest_framework.mixins import CreateModelMixin, ListModelMixin
 from rest_framework.permissions import (IsAuthenticated,
                                         IsAuthenticatedOrReadOnly)
 
+from posts.models import Follow, Group, Post, User
 from .permissions import IsOwnerOrReadOnly
 from .serializers import (CommentSerializer, FollowSerializer, GroupSerializer,
                           PostSerializer, UserSerializer)
+#  Вроде перепроверил все файлы, надеюсь теперь все корректно :)
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
