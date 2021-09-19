@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
+
 from posts.models import Follow, Group, Post, User
+
 from rest_framework import filters, viewsets
 from rest_framework.mixins import CreateModelMixin, ListModelMixin
 from rest_framework.permissions import (IsAuthenticated,
@@ -31,12 +33,6 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
-
-    def get_permissions(self):
-        if self.action == 'retrieve':
-            return (IsOwnerOrReadOnly(),)
-
-        return super().get_permissions()
 
 
 class CommentViewSet(viewsets.ModelViewSet):
