@@ -21,12 +21,6 @@ class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     permission_classes = (IsOwnerOrReadOnly,)
 
-    def get_permissions(self):
-        if self.action == 'retrieve':
-            return (IsOwnerOrReadOnly(),)
-
-        return super().get_permissions()
-
 
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
@@ -70,4 +64,4 @@ class FollowViewSet(viewsets.GenericViewSet, CreateModelMixin, ListModelMixin):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.request.user.username)
-        return user.follower
+        return user.follower.all()

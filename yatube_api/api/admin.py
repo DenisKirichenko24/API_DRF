@@ -1,5 +1,8 @@
 from django.contrib import admin
 from posts.models import Comment, Follow, Group, Post
+#  Перед отправкой на первое ревью я прогнал через isort и он исправил импорты
+#  Сейчас прогоняю и никаких изменений нет,
+#  скажите пожалуйста нужно ли их поменять вручную?:)
 
 
 class GroupAdmin(admin.ModelAdmin):
